@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Christine & Piet</title>
+    <style>
+     .row:before,
+     .row:after {
+         content:"";
+         display: table ;
+         clear:both;
+     }
+     .full {
+         min-height: 1px;
+         padding: 12px;
+         float: left;
+         width: 100%;
+     }
+     .half {
+         min-height: 1px;
+         padding: 12px;
+         float: left;
+         width: 50%;
+     }
+     .third {
+         min-height: 1px;
+         padding: 12px;
+         float: left;
+         width: 33%;
+     }
+     .fourth {
+         min-height: 1px;
+         padding: 12px;
+         float: left;
+         width: 25%;
+     }
+     body {
+         font: Baskerville;
+         font-style: normal;
+         font-weight: normal;
+         line-height: 1.5;
+     }
+     * {
+         box-sizing: border-box;
+     }
+     .container {
+         margin: 0 auto;
+         max-width: 800px;
+     }
+     .hero {
+         display: block;
+         margin: 0 auto;
+         width: 200px;
+     }
+     label {
+         text-decoration: underline;
+         text-transform: uppercase;
+         font-weight: bold;
+     }
+     input {
+         background-color: yellow;
+         border-style: solid;
+         border-width: 1px;
+         border-color: #cccccc;
+         width: 100%;
+         font-size: 0.77778rem;
+     }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img class="hero" alt="" src="bebe.png"/>
+      <table>
+        <tr>
+          <th></th>
+          <th>Piet</th>
+          <th>Christine</th>
+        </tr>
+        <tr>
+          <td><strong>Gewicht</strong></td>
+          <td>3.6kg</td>
+          <td>?</td>
+        </tr>
+        <tr>
+          <td><strong>Lengte</strong></td>
+          <td>52cm</td>
+          <td>?</td>
+        </tr>
+        <tr>
+          <td><strong>Tijdstip</strong></td>
+          <td>Midden in de nacht</td>
+          <td>4u smiddags</td>
+        </tr>
+      </table>
+
+      <form>
+        <div class="row">
+          <div class="half">
+            <label>
+              Gewicht <span class="info">(in kg)</span>
+              <input name="weight" type="text" value=""/>
+            </label>
+          </div>
+          <div class="half">
+            <label>
+              Lengte <span class="info">(in cm)</span>
+              <input name="length" type="text" value=""/>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="half">
+            <label for="sex_male">Jongen</label>
+            <input name="sex" type="radio" id="sex_male"value="male" />
+          </div>
+          <div class="half">
+            <label for="sex_female">Meisje</label>
+            <input name="sex" type="radio" id="sex_female" value="female" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="half">
+          <label>
+            Dag
+            <input name="date" type="date" value=""/>
+          </label>
+          </div>
+          <div class="half">
+            <label>
+              Tijdstip
+              <input name="time" type="time" value=""/>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="full">
+            <input name="" type="submit" value="Verstuur"/>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
