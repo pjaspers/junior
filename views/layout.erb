@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Christine & Piet</title>
+    <style>
+     .row:before,
+     .row:after {
+         content:"";
+         display: table ;
+         clear:both;
+     }
+     .full {
+         min-height: 1px;
+         padding: 12px;
+         float: left;
+         width: 100%;
+     }
+     .half {
+         min-height: 1px;
+         padding: 12px;
+         float: left;
+         width: 50%;
+     }
+     .third {
+         min-height: 1px;
+         padding: 12px;
+         float: left;
+         width: 33%;
+     }
+     .fourth {
+         min-height: 1px;
+         padding: 12px;
+         float: left;
+         width: 25%;
+     }
+     body {
+         font: Baskerville;
+         font-style: normal;
+         font-weight: normal;
+         line-height: 1.5;
+     }
+     * {
+         box-sizing: border-box;
+     }
+     .container {
+         margin: 0 auto;
+         max-width: 800px;
+     }
+     .hero {
+         display: block;
+         margin: 0 auto;
+         width: 200px;
+     }
+     label {
+         text-decoration: underline;
+         text-transform: uppercase;
+         font-weight: bold;
+     }
+     input {
+         border-style: solid;
+         border-width: 1px;
+         border-color: #cccccc;
+         width: 100%;
+         font-size: 0.77778rem;
+     }
+     .dates label {
+         width: 100%;
+         display: block;
+     }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img class="hero" alt="" src="bebe.png"/>
+      <%= yield %>
+    </div>
+  </body>
+</html>

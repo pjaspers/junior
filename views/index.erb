@@ -1,0 +1,16 @@
+<div>
+  <table>
+    <% @votes.each.with_index do |vote, index| %>
+      <tr>
+        <% if vote.male %>
+          <td>Jongen</td>
+        <% else %>
+          <td>Meisje</td>
+        <% end  %>
+        <td><%= vote.length %>cm</td>
+        <td><%= vote.weight %>kg</td>
+        <td><%= vote.born_at.strftime("Op %d-%m om %H:%M") %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
