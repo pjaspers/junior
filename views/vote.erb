@@ -1,26 +1,45 @@
-<table>
-  <tr>
-    <th></th>
-    <th>Piet</th>
-    <th>Christine</th>
-  </tr>
-  <tr>
-    <td><strong>Gewicht</strong></td>
-    <td>3.6kg</td>
-    <td>?</td>
-  </tr>
-  <tr>
-    <td><strong>Lengte</strong></td>
-    <td>52cm</td>
-    <td>?</td>
-  </tr>
-  <tr>
-    <td><strong>Tijdstip</strong></td>
-    <td>Midden in de nacht</td>
-    <td>4u smiddags</td>
-  </tr>
-</table>
-
+<div class="row">
+  <div class="half">
+    <table>
+      <thead>
+        <tr>
+          <th>Piet</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>3.6 kg</td>
+        </tr>
+        <tr>
+          <td>52 cm</td>
+        </tr>
+        <tr>
+          <td>Midden in de nacht</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="half">
+    <table>
+      <thead>
+        <tr>
+          <th>Christine</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>3.5 kg</td>
+        </tr>
+        <tr>
+          <td>49 cm</td>
+        </tr>
+        <tr>
+          <td>4u smiddags</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <form method="post" action="vote">
   <div class="row">
     <div class="half">
@@ -75,7 +94,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="full">
+    <div class="half offset-fourth">
       <input name="" type="submit" value="Verstuur"/>
     </div>
   </div>

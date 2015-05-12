@@ -1,16 +1,28 @@
-<div>
+<div class="three-fourth offset-eight">
   <table>
-    <% @votes.each.with_index do |vote, index| %>
+    <thead>
       <tr>
-        <% if vote.male %>
-          <td>Jongen</td>
-        <% else %>
-          <td>Meisje</td>
-        <% end  %>
-        <td><%= vote.length %>cm</td>
-        <td><%= vote.weight %>kg</td>
-        <td><%= vote.born_at.strftime("Op %d-%m om %H:%M") %></td>
+        <th>Naam</th>
+        <th>Geslacht</th>
+        <th>Lengte <span>(cm)</span></th>
+        <th>Gewicht <span>(kg)</span></th>
+        <th>Datum</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @votes.each.with_index do |vote, index| %>
+        <tr>
+          <td>Piet</td>
+          <% if vote.male %>
+            <td>Jongen</td>
+          <% else %>
+            <td>Meisje</td>
+          <% end  %>
+          <td><%= vote.length %></td>
+          <td><%= vote.weight %></td>
+          <td><%= vote.born_at.strftime("Op %d-%m om %H:%M") %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>

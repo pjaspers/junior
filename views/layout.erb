@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8"/>
     <title>Christine & Piet</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0">
     <style>
      .row:before,
      .row:after {
@@ -16,17 +17,35 @@
          float: left;
          width: 100%;
      }
+     .offset-third {
+         margin-left: 50%;
+     }
+     .offset-eight {
+         margin-left: 12.5%;
+     }
+     .three-fourth {
+         min-height: 1px;
+         padding: 12px;
+         float: left;
+         width: 75%;
+     }
      .half {
          min-height: 1px;
          padding: 12px;
          float: left;
          width: 50%;
      }
+     .offset-third {
+         margin-left: 33%;
+     }
      .third {
          min-height: 1px;
          padding: 12px;
          float: left;
          width: 33%;
+     }
+     .offset-fourth {
+         margin-left: 25%;
      }
      .fourth {
          min-height: 1px;
@@ -35,7 +54,7 @@
          width: 25%;
      }
      body {
-         font: Baskerville;
+         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
          font-style: normal;
          font-weight: normal;
          line-height: 1.5;
@@ -53,7 +72,7 @@
          width: 200px;
      }
      label {
-         text-decoration: underline;
+         text-decoration: none;
          text-transform: uppercase;
          font-weight: bold;
      }
@@ -63,10 +82,53 @@
          border-color: #cccccc;
          width: 100%;
          font-size: 0.77778rem;
+         line-height: 1.42857143;
+         padding: 8px;
      }
      .dates label {
          width: 100%;
          display: block;
+     }
+     table {
+         width: 100%;
+         border-collapse: collapse;
+         border-color: gray;
+     }
+     table > tbody> tr:nth-of-type(odd) {
+         background-color: #F7F4F4;
+     }
+     table > tbody > tr > td {
+         padding: 8px;
+         line-height: 1.42857143;
+         vertical-align: top;
+         border-top: 1px solid #ddd;
+         text-align: center;
+     }
+     thead > tr > th > span {
+         display: none;
+     }
+     @media (min-width: 768px) {
+         thead > tr > th > span {
+             display: inline;
+         }
+     }
+     /* Small devices (tablets, 768px and up) */
+     @media (min-width: 768px) {
+         body {
+         }
+     }
+
+     /* Medium devices (desktops, 992px and up) */
+     @media (min-width: 992px) {
+         body {
+         }
+
+     }
+
+     /* Large devices (large desktops, 1200px and up) */
+     @media (min-width: 1200px) {
+         body {
+         }
      }
     </style>
   </head>
