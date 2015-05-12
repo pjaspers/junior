@@ -42,16 +42,22 @@
 </div>
 <form method="post" action="vote">
   <div class="row">
-    <div class="half">
+    <div class="<%= add_error_class(@vote, :weight, "half") %>">
       <label>
         Gewicht <span class="info">(in kg)</span>
         <input name="weight" type="text" value="<%= @vote.weight %>"/>
+        <% if @vote.errors && @vote.errors[:weight] %>
+          <span class="error-info"><%= @vote.errors[:weight].join(" ") %></span>
+        <% end %>
       </label>
     </div>
-    <div class="half">
+    <div class="<%= add_error_class(@vote, :length, "half") %>">
       <label>
         Lengte <span class="info">(in cm)</span>
         <input name="length" type="text" value="<%= @vote.length %>"/>
+        <% if @vote.errors && @vote.errors[:length] %>
+          <span class="error-info"><%= @vote.errors[:length].join(" ") %></span>
+        <% end %>
       </label>
     </div>
   </div>

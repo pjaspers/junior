@@ -55,6 +55,22 @@ class Junior < Sinatra::Application
         "selected"
       end
     end
+
+    def errors?(object, attribute)
+      if object && object.respond_to?(:errors)
+        !!object.errors.fetch(attribute, false)
+      else
+        false
+      end
+    end
+
+    def add_error_class(object, attribute, css_class)
+      if errors?(@vote, :weight)
+        (Array(css_class) + ["errors"]).join(" ")
+      else
+        css_class
+      end
+    end
   end
 
   get "/" do
@@ -69,8 +85,8 @@ class Junior < Sinatra::Application
 
   post "/vote" do
     @vote = Vote.new
-    @vote.weight = fix_numeric_input params[:weight]
-    @vote.length = fix_numeric_input params[:length]
+    @vote.weight = params[:weight]
+    @vote.length = params[:length]
     if params[:sex]
       @vote.male = (params[:sex] == "male")
     end
@@ -81,14 +97,6 @@ class Junior < Sinatra::Application
     else
       erb :vote
     end
-  end
-
-  def fix_numeric_input(value)
-    if value.is_a?(String)
-      value.gsub!(',','.')
-      value.gsub!(/[^\d.]/, "")
-    end
-    Kernel.Float(value) rescue nil
   end
 
   def fetch_date(data)
