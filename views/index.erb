@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th>Naam</th>
-        <th>Geslacht</th>
+        <th class="sex-header"><span>Geslacht</span></th>
         <th>Lengte <span>(cm)</span></th>
         <th>Gewicht <span>(kg)</span></th>
         <th>Datum</th>
@@ -12,13 +12,13 @@
     <tbody>
       <% @votes.each.with_index do |vote, index| %>
         <tr>
-          <td>Piet</td>
+          <td>Piet en keilange naam</td>
           <% if vote.male %>
-            <td>Jongen</td>
+            <td class="male"><span>Jongen</span></td>
           <% else %>
-            <td>Meisje</td>
+            <td class="female"><span>Meisje</span></td>
           <% end  %>
-          <td><%= vote.length %></td>
+          <td><%= "%.2f" % vote.length %></td>
           <td><%= vote.weight %></td>
           <td><%= vote.born_at.strftime("Op %d-%m om %H:%M") %></td>
         </tr>
