@@ -14,7 +14,7 @@ $db.create_table? :votes do
   Time :born_at
   Time :created_at
   Time :updated_at
-  Reference :user_id
+  Integer :user_id
 end
 
 $db.create_table? :users do
