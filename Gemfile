@@ -7,6 +7,7 @@ gem "shack", "~> 0.0.2"
 gem "unicorn", "~> 4.9.0"
 gem "rake", "~> 10.4.2"
 gem "sequel", "~> 4.22.0"
+gem "pg", "~> 0.18.1"
 
 group :development, :test do
   gem "pry", "~> 0.9"
