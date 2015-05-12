@@ -3,7 +3,6 @@ Bundler.setup
 require "sinatra/base"
 require "sequel"
 require "time"
-require "pry"
 
 $db = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://junior.db')
 
