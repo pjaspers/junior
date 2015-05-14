@@ -1,31 +1,11 @@
 require "bundler"
 Bundler.setup
+require 'dotenv'
+Dotenv.load
 require "sinatra/base"
 require "sequel"
 require "time"
-
-$db = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://junior.db')
-
-$db.create_table? :votes do
-  primary_key :id
-  Float :length
-  Float :weight
-  Bool :male
-  Time :born_at
-  Time :created_at
-  Time :updated_at
-  Integer :user_id
-end
-
-$db.create_table? :users do
-  primary_key :id
-  String :email
-  String :name
-  Bool :paid
-  String :token
-  Time :created_at
-  Time :updated_at
-end
+require "./boot"
 
 class Vote < Sequel::Model
   plugin :timestamps
@@ -52,6 +32,23 @@ class User < Sequel::Model
   plugin :timestamps
   plugin :validation_helpers
   one_to_one :vote
+
+  def mail_with_template(template_name)
+    template = Tilt::ERBTemplate.new("views/#{template_name}")
+    template.render(self, name: name, link_name: "baby.jaspe.rs/#{token}", link_href: "https://baby.jaspe.rs/#{token}")
+  end
+
+  def send_mail
+    raise "No email" unless email
+    raise "No token set" unless token
+    Pony.mail(
+      to: email,
+      subject: "Plaats een gokje"
+      from: "piet@pjaspers.com",
+      body: mail_with_template("mail.txt.erb"),
+      html_body: mail_with_template("mail.html.erb")
+    )
+  end
 
   def validate
     super
