@@ -5,15 +5,15 @@ install:
 - bundle install --local --jobs=3 --retry=3 --deployment
 deploy:
   provider: heroku
-  api_key:
-    secure: Bm9Wx/Ngd0DyZQcJgkAn2CGdW556u3sEC+dydESOwQYz3qYW8Q4ag56VP+bueC/rBsfK8PUUhwauNCwg023xSNUOr8QYiXlK6WYvQlF81R9fXldMBGkEPlYY4w2UuVQJ9X8CQyecBfEcepQTB3c1kik85JtIuwoE65b74tn5QVA=
   app: kleinejaspers
+  api_key:
+    secure: U5Q6/wjQ2GhQxmeQGlRA6Q7K15sr2d7f3Id2xIfRvQdChmsBuJmOE7vaheWXoFPmZacyqD61qrIBieKFb0KRXM4UTojEFLurT9ucSjwoU3F553mR73HRZfvm+LpBSHO0/0w1RYKgPcS6kOOFo1mCLUhXg23I3GfOHA9/YAyS1XA9e126T20Q/AVH3rtz80ku4Gqh36Dew8jlIr3aiTZa517YCYsCatPtr3r7rWzLetAuf0m4F9vV9lRrJAI7j8A4xexMYfCG/X8Ba8mjkPEW8y+57ZEoYIuUVhgSNfAddiO5W5o6hBlBTlgd5Lfm+x7483Q1vJ6yTAN2SKX6iRtq6KV2DCgyL9dHQQhl8mHUYN6pDXSSnWitQhNsq0+OsaVYQDGnrzoxaMDFcbv53nEHbD85APSzEdKVA0kQXeRV/bLXG8f+1fWim/ZBwr6LPvZaDApdHiSTzlQE3N82Dr1EJOLwWIZL0WB/GcNNImbBwsZNYccVhdPlJFp4A42+p/Hi8HdAoPWhcbWBapEfA/YQxypXch6EbpYhv2wT1FI92mMF4MHCdysUMBQyZgSoPEpY8gZMM/UArm3TiCj7YRJpnkfsBSug9tH8BBUtFwU0sdBV2x2a3bI7gNvtxxucvmwQS7fPEFMS6knmjOAcik99a/VcxnqPkGKhemwbZYsDv/o=
 env:
   global:
-    secure: hqhrpC91wSsyT24BKT2NM+tUaEVC+RX2gV5IjwjqxyAU2iWQfeRXJ8PC8SxSJc50Vjo+paejX0JlEycd415AVFXTl/iY+QUZaFQSuTdCxR+6+ggf5F6ytm7QvkxLE/Ttc5FWGpF2Bxj95aAVryP8LYZJDoTlZlWe0FlzIfwTml4=
+    secure: CVeRLB76krgcNrPgi9D23Ol4oI7v/yMrq/6p+TlhnTmTEm8bLIE0QWtnhs0arRdVk7eq21gJk9dbZusiptCqYAE127I6Il+l0IfRilOUs5FNBzeF1WtAYGc4A2Zd1lMJdoo47I2ThSIJhNnsgGlsaxmb/Q5CHBIdxOyTwTqYT+ctn7ELzG7vnW+bsjhR/0CxjwEqlw6hZEOhHB38LlyaIKr6bjND4XDYC4CZ6xHsDshrmaqlJL2U2CnOkEc2nk2dmru8+W7qmcbfoJlNZkvvVNz/qeub7q0pZ1N01XSaCx7ckKZYTe7eawqcH7C8/DdYVo8EKJOnBDl8fyXs9dzui0SPETM2TQGIkIXIUfOGZOpcI/eAlSFh/PTkIjdsT98rZcG556kSfslSOgWdi1Tc48Knua1tTdO91ZvisRr2sVYSvauYrnuZSry6E6ZXYh658wkVU68tmc5biMsRqhQieJVNboS1gzcOyKM3foTGOQvuwLetnskm3ueHXTnkq8+UuELNh3t55HQWsqNWD367iF2GGuFnqCHAX+KLmRo0/Px72IOAvzgDwXews7QVdmx3WNcDu7tJJiNP/CJkPsC5Bw7+SMCv3yr7IUlkqc8xXXURqwTIo/QgL1zwYTrmBX2sGtZWye/tvpf1CmaQDTt0XdOZ8a73pDINcDtWkPcI39g=
 before_deploy:
 - echo "Stand back! High tech cybering starting!"
 after_deploy:
 - echo "Setting the sha"
-- >
-    curl -n -H "Authorization: Bearer $HEROKU_API_KEY" -X PATCH https://api.heroku.com/apps/kleinejaspers/config-vars -H "Accept: application/vnd.heroku+json; version=3" -H "Content-Type: application/json" -d '{"SHA":"'"$TRAVIS_COMMIT"'"}'
+- |
+  curl -n -H "Authorization: Bearer $HEROKU_API_KEY" -X PATCH https://api.heroku.com/apps/kleinejaspers/config-vars -H "Accept: application/vnd.heroku+json; version=3" -H "Content-Type: application/json" -d '{"SHA":"'"$TRAVIS_COMMIT"'"}'
