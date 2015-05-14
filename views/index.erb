@@ -20,7 +20,7 @@
           <% end  %>
           <td><%= "%.2f" % vote.length %></td>
           <td><%= vote.weight %></td>
-          <td><%= vote.born_at.strftime("Op %d-%m om %H:%M") %></td>
+          <td><%= vote.born_at.strftime("%d/%m om %H:%M") %></td>
         </tr>
       <% end %>
     </tbody>
