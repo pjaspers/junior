@@ -118,6 +118,9 @@
      thead > tr > th > span {
          display: none;
      }
+     .errors label {
+         color: #F0B0B0;
+     }
      .errors input {
          border: 2px solid #F0B0B0;
      }
@@ -147,6 +150,12 @@
          0 0 0 6px #F7F5F5;
          margin-bottom: 60px;
          border-radius: 1px;
+     }
+     .batman {
+         width: 50%;
+     }
+     .batman img {
+         padding: 10px;
      }
      @media (max-width: 768px) {
          .offset-eight {
@@ -178,6 +187,19 @@
              content: "";
          }
      }
+     .instructions {
+         text-align: center;
+     }
+     .instructions dt {
+         float:left;
+         width:50%;
+         font-weight: bold;
+         text-align:right;
+     }
+     .instructions dd {
+         margin-left:55%;
+         text-align: left;
+     }
      /* Small devices (tablets, 768px and up) */
      @media (min-width: 768px) {
          body {
@@ -200,7 +222,7 @@
   </head>
   <body>
     <div class="container">
-      <img class="hero" alt="" src="bebe.png"/>
+      <img class="hero" alt="" src="/bebe.png"/>
       <%= yield %>
     </div>
   </body>

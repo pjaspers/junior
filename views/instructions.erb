@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="instructions full">
+    <h2>Hoi <%= @user.name %>,</h2>
+    <p>Per onderdeel zal degene die er het dichtste bij zit een aantal punten krijgen. Deze punten worden dan opgeteld en degene met de meeste punten wint de totale pot.</p>
+    <div class="row">
+      <dl>
+        <dt>Geslacht</dt>
+        <dd>4 punten</dd>
+        <dt>Datum</dt>
+        <dd>2 punten</dd>
+        <dt>Lengte</dt>
+        <dd>1 punt</dd>
+        <dt>Gewicht</dt>
+        <dd>1 punt</dd>
+        <dt>Tijdstip</dt>
+        <dd>1 punt</dd>
+      </dl>
+    </div>
+    <p>Je kan slechts <strong>eenmaal</strong> een stem uitbrengen en de inleg om mee te spelen bedraagt 2 euro.</p>
+    <p>Deze 2 euro dien je te betalen aan Piet of Christine, liefst voor de geboorte :)</p>
+    <p>Veel succes!</p>
+    <p> Christine &amp; Piet</p>
+    <a href="/vote/<%= @user.token %>">Op naar het stemmen!</a>
+  </div>
+  <hr/>
+</div>

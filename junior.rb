@@ -20,6 +20,8 @@ end
 $db.create_table? :users do
   primary_key :id
   String :email
+  String :name
+  Bool :paid
   String :token
   Time :created_at
   Time :updated_at
@@ -28,6 +30,7 @@ end
 class Vote < Sequel::Model
   plugin :timestamps
   plugin :validation_helpers
+  many_to_one :user
 
   def male?
     !!male
@@ -41,6 +44,18 @@ class Vote < Sequel::Model
   def validate
     super
     validates_presence [:male, :length, :weight, :born_at]
+    validates_schema_types
+  end
+end
+
+class User < Sequel::Model
+  plugin :timestamps
+  plugin :validation_helpers
+  one_to_one :vote
+
+  def validate
+    super
+    validates_presence [:name, :email]
     validates_schema_types
   end
 end
@@ -64,7 +79,7 @@ class Junior < Sinatra::Application
     end
 
     def add_error_class(object, attribute, css_class)
-      if errors?(@vote, :weight)
+      if errors?(@vote, attribute)
         (Array(css_class) + ["errors"]).join(" ")
       else
         css_class
@@ -77,24 +92,41 @@ class Junior < Sinatra::Application
     erb :index
   end
 
-  get "/vote" do
-    @vote = Vote.new
-    erb :vote
+  get "/:token" do
+    if @user = User[token: (params["token"] || "").downcase]
+      erb :instructions
+    else
+      erb :"404"
+    end
   end
 
-  post "/vote" do
-    @vote = Vote.new
-    @vote.weight = params[:weight]
-    @vote.length = params[:length]
-    if params[:sex]
-      @vote.male = (params[:sex] == "male")
-    end
-    @vote.born_at = fetch_date(params[:born_at])
-    if @vote.valid?
-      @vote.save
-      redirect "/"
-    else
+  get "/vote/:token" do
+    if @user = User[token: (params["token"] || "").downcase]
+      @vote = Vote.new
       erb :vote
+    else
+      erb :"404"
+    end
+  end
+
+  post "/vote/:token" do
+    if @user = User[token: (params["token"] || "").downcase]
+      @vote = Vote.new
+      @vote.user = @user
+      @vote.weight = params[:weight]
+      @vote.length = params[:length]
+      if params[:sex]
+        @vote.male = (params[:sex] == "male")
+      end
+      @vote.born_at = fetch_date(params[:born_at])
+      if @vote.valid?
+        @vote.save
+        redirect "/"
+      else
+        erb :vote
+      end
+    else
+      erb :"404"
     end
   end
 

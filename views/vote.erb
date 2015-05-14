@@ -12,7 +12,7 @@
             <td>3.6 kg</td>
           </tr>
           <tr>
-            <td>52 cm</td>
+            <td>51 cm</td>
           </tr>
           <tr>
             <td>Midden in de nacht</td>
@@ -41,7 +41,7 @@
       </table>
     </div>
   </div>
-  <form method="post" action="vote">
+  <form method="post" action="/vote/<%= @user.token %>">
     <div class="row">
       <div class="<%= add_error_class(@vote, :weight, "half") %>">
         <label>
@@ -63,11 +63,11 @@
       </div>
     </div>
     <div class="row">
-      <div class="half">
+      <div class="<%= add_error_class(@vote, :male, "half") %>">
         <label for="sex_male">Jongen</label>
-        <input name="sex" type="radio" id="sex_male"value="male" <%= "checked='checked'" if @vote.male? %>/>
+        <input name="sex" type="radio" id="sex_male" value="male" <%= "checked='checked'" if @vote.male? %>/>
       </div>
-      <div class="half">
+      <div class="<%= add_error_class(@vote, :male, "half") %>">
         <label for="sex_female">Meisje</label>
         <input name="sex" type="radio" id="sex_female" value="female" <%= "checked='checked'" if @vote.female? %>/>
       </div>
