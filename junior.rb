@@ -1,7 +1,9 @@
 require "bundler"
 Bundler.setup
-require 'dotenv'
-Dotenv.load
+if ENV["RACK_ENV"] == "development"
+  require 'dotenv'
+  Dotenv.load
+end
 require "sinatra/base"
 require "sequel"
 require "time"

@@ -1,5 +1,6 @@
 require "bundler"
 Bundler.setup
+require 'dotenv'
 require 'dotenv/tasks'
 
 task :test do
