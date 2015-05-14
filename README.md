@@ -14,8 +14,10 @@ So now I'm using a curl (C.R.E.A.M. [0]) to issue a request to the Heroku API us
 
 In order for Travis to have access to the Heroku Auth token, it's needed to add it to the `.travis.yml` file.
 
-`travis encrypt $(heroku auth:token) --add deploy.api_key`
-`travis encrypt HEROKU_API_KEY=$(heroku auth:token) --add env.global`
+```
+travis encrypt $(heroku auth:token) --add deploy.api_key
+travis encrypt HEROKU_API_KEY=$(heroku auth:token) --add env.global
+```
 
 (Once for deploying, once for setting the sha using the API)
 
