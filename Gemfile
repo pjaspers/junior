@@ -10,6 +10,7 @@ gem "sequel", "~> 4.22.0"
 gem "pg", "~> 0.18.1"
 
 group :development, :test do
+  gem "sass", "~> 3.4.13"
   gem "pry", "~> 0.9"
   gem "sqlite3", "~> 1.3.10"
   gem "minitest", "~> 5.5.0"
