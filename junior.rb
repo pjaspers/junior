@@ -137,6 +137,11 @@ class Junior < Sinatra::Application
     end
   end
 
+  not_found do
+    status 404
+    erb :"404"
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
