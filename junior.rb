@@ -43,7 +43,7 @@ class User < Sequel::Model
     raise "No token set" unless token
     Pony.mail(
       to: email,
-      subject: "Plaats een gokje"
+      subject: "Plaats een gokje",
       from: "piet@pjaspers.com",
       body: mail_with_template("mail.txt.erb"),
       html_body: mail_with_template("mail.html.erb")
