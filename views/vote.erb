@@ -1,107 +1,109 @@
-<div class="row">
-  <div class="half">
-    <table>
-      <thead>
-        <tr>
-          <th>Piet</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>3.6 kg</td>
-        </tr>
-        <tr>
-          <td>52 cm</td>
-        </tr>
-        <tr>
-          <td>Midden in de nacht</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="card">
+  <div class="row">
+    <div class="half">
+      <table>
+        <thead>
+          <tr>
+            <th>Piet</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3.6 kg</td>
+          </tr>
+          <tr>
+            <td>52 cm</td>
+          </tr>
+          <tr>
+            <td>Midden in de nacht</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="half">
+      <table>
+        <thead>
+          <tr>
+            <th>Christine</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3.5 kg</td>
+          </tr>
+          <tr>
+            <td>49 cm</td>
+          </tr>
+          <tr>
+            <td>4u smiddags</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="half">
-    <table>
-      <thead>
-        <tr>
-          <th>Christine</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>3.5 kg</td>
-        </tr>
-        <tr>
-          <td>49 cm</td>
-        </tr>
-        <tr>
-          <td>4u smiddags</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <form method="post" action="vote">
+    <div class="row">
+      <div class="<%= add_error_class(@vote, :weight, "half") %>">
+        <label>
+          Gewicht <span class="info">(in kg)</span>
+          <input name="weight" type="text" value="<%= @vote.weight %>"/>
+          <% if @vote.errors && @vote.errors[:weight] %>
+            <span class="error-info"><%= @vote.errors[:weight].join(" ") %></span>
+          <% end %>
+        </label>
+      </div>
+      <div class="<%= add_error_class(@vote, :length, "half") %>">
+        <label>
+          Lengte <span class="info">(in cm)</span>
+          <input name="length" type="text" value="<%= @vote.length %>"/>
+          <% if @vote.errors && @vote.errors[:length] %>
+            <span class="error-info"><%= @vote.errors[:length].join(" ") %></span>
+          <% end %>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="half">
+        <label for="sex_male">Jongen</label>
+        <input name="sex" type="radio" id="sex_male"value="male" <%= "checked='checked'" if @vote.male? %>/>
+      </div>
+      <div class="half">
+        <label for="sex_female">Meisje</label>
+        <input name="sex" type="radio" id="sex_female" value="female" <%= "checked='checked'" if @vote.female? %>/>
+      </div>
+    </div>
+    <div class="row dates">
+      <div class="half">
+        <label for="born_at[month]">Maand</label>
+        <select name="born_at[month]">
+          <option value="8" <%= selected?(@vote.born_at, :month, 8) %>>Augustus</option>
+          <option value="9" <%= selected?(@vote.born_at, :month, 9) %>>September</option>
+          <option value="10" <%= selected?(@vote.born_at, :month, 10) %>>Oktober</option>
+        </select>
+        <select name="born_at[day]">
+          <% (1..31).each do |day| %>
+            <option value="<%= day %>" <%= selected?(@vote.born_at, :day, day) %>><%= day %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="half">
+        <label>Tijdstip</label>
+        <select name="born_at[hour]">
+          <% (0..23).each do |hour| %>
+            <option value="<%= hour %>" <%= selected?(@vote.born_at, :hour, hour) %>><%= "%02d" % hour %></option>
+          <% end %>
+        </select>
+        <select name="born_at[minute]">
+          <% (0..59).each do |minute| %>
+            <option value="<%= minute %>" <%= selected?(@vote.born_at, :min, minute) %>><%= "%02d" % minute %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="half offset-fourth">
+        <input name="" type="submit" value="Verstuur"/>
+      </div>
+    </div>
+  </form>
 </div>
-<form method="post" action="vote">
-  <div class="row">
-    <div class="<%= add_error_class(@vote, :weight, "half") %>">
-      <label>
-        Gewicht <span class="info">(in kg)</span>
-        <input name="weight" type="text" value="<%= @vote.weight %>"/>
-        <% if @vote.errors && @vote.errors[:weight] %>
-          <span class="error-info"><%= @vote.errors[:weight].join(" ") %></span>
-        <% end %>
-      </label>
-    </div>
-    <div class="<%= add_error_class(@vote, :length, "half") %>">
-      <label>
-        Lengte <span class="info">(in cm)</span>
-        <input name="length" type="text" value="<%= @vote.length %>"/>
-        <% if @vote.errors && @vote.errors[:length] %>
-          <span class="error-info"><%= @vote.errors[:length].join(" ") %></span>
-        <% end %>
-      </label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="half">
-      <label for="sex_male">Jongen</label>
-      <input name="sex" type="radio" id="sex_male"value="male" <%= "checked='checked'" if @vote.male? %>/>
-    </div>
-    <div class="half">
-      <label for="sex_female">Meisje</label>
-      <input name="sex" type="radio" id="sex_female" value="female" <%= "checked='checked'" if @vote.female? %>/>
-    </div>
-  </div>
-  <div class="row dates">
-    <div class="half">
-      <label for="born_at[month]">Maand</label>
-      <select name="born_at[month]">
-        <option value="8" <%= selected?(@vote.born_at, :month, 8) %>>Augustus</option>
-        <option value="9" <%= selected?(@vote.born_at, :month, 9) %>>September</option>
-        <option value="10" <%= selected?(@vote.born_at, :month, 10) %>>Oktober</option>
-      </select>
-      <select name="born_at[day]">
-        <% (1..31).each do |day| %>
-          <option value="<%= day %>" <%= selected?(@vote.born_at, :day, day) %>><%= day %></option>
-        <% end %>
-      </select>
-    </div>
-    <div class="half">
-      <label>Tijdstip</label>
-      <select name="born_at[hour]">
-        <% (0..23).each do |hour| %>
-          <option value="<%= hour %>" <%= selected?(@vote.born_at, :hour, hour) %>><%= "%02d" % hour %></option>
-        <% end %>
-      </select>
-      <select name="born_at[minute]">
-        <% (0..59).each do |minute| %>
-          <option value="<%= minute %>" <%= selected?(@vote.born_at, :min, minute) %>><%= "%02d" % minute %></option>
-        <% end %>
-      </select>
-    </div>
-  </div>
-  <div class="row">
-    <div class="half offset-fourth">
-      <input name="" type="submit" value="Verstuur"/>
-    </div>
-  </div>
-</form>
