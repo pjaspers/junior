@@ -62,6 +62,15 @@ end
 
 class Junior < Sinatra::Application
   helpers do
+    # Returns a user or just shows the 404.
+    def fetch_user!(token)
+      if user = User[token: (token || "").downcase]
+        user
+      else
+        halt erb(:"404")
+      end
+    end
+
     def selected?(date, method, value)
       return unless date
 
@@ -85,6 +94,11 @@ class Junior < Sinatra::Application
         css_class
       end
     end
+
+    def fetch_date(data)
+      time_string = "2015/%s/%s %s:%s" % [data[:month], data[:day], data[:hour], data[:minute]]
+      Time.strptime(time_string, "%Y/%m/%d %H:%M")
+    end
   end
 
   get "/" do
@@ -93,46 +107,34 @@ class Junior < Sinatra::Application
   end
 
   get "/:token" do
-    if @user = User[token: (params["token"] || "").downcase]
-      erb :instructions
-    else
-      erb :"404"
-    end
+    @user = fetch_user!(params["token"])
+    erb :instructions
   end
 
   get "/vote/:token" do
-    if @user = User[token: (params["token"] || "").downcase]
-      @vote = Vote.new
-      erb :vote
-    else
-      erb :"404"
-    end
+    @user = fetch_user!(params["token"])
+    @vote = Vote.new
+    erb :vote
   end
 
   post "/vote/:token" do
-    if @user = User[token: (params["token"] || "").downcase]
-      @vote = Vote.new
-      @vote.user = @user
-      @vote.weight = params[:weight]
-      @vote.length = params[:length]
-      if params[:sex]
-        @vote.male = (params[:sex] == "male")
-      end
-      @vote.born_at = fetch_date(params[:born_at])
-      if @vote.valid?
-        @vote.save
-        redirect "/"
-      else
-        erb :vote
-      end
-    else
-      erb :"404"
+    @user = fetch_user!(params["token"])
+    @vote = Vote.new(user: @user)
+    @vote.weight = params[:weight]
+    @vote.length = params[:length]
+    if params[:sex]
+      @vote.male = (params[:sex] == "male")
     end
-  end
+    if params[:born_at]
+      @vote.born_at = fetch_date(params[:born_at])
+    end
 
-  def fetch_date(data)
-    time_string = "2015/%s/%s %s:%s" % [data[:month], data[:day], data[:hour], data[:minute]]
-    Time.strptime(time_string, "%Y/%m/%d %H:%M")
+    if @vote.valid?
+      @vote.save
+      redirect "/"
+    else
+      erb :vote
+    end
   end
 
   # start the server if ruby file executed directly
