@@ -55,6 +55,15 @@ class AppTest < Minitest::Test
     assert_includes last_response.body, "batman"
   end
 
+  def test_user_can_only_vote_once
+    user = setup_user
+    post "/vote/franz", length: "52", weight: "3.6", sex: "male", born_at: {month: 11, day: 1, hour: 3, minute: 3}
+    post "/vote/franz", length: "46", weight: "3.6", sex: "male", born_at: {month: 11, day: 1, hour: 3, minute: 3}
+
+    assert_includes last_response.body, "Sorry"
+    assert_equal user.vote.length, 52
+  end
+
   def test_shows_errors_on_invalid_inputs
     setup_user
     post "/vote/franz", length: "abc"

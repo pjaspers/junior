@@ -113,12 +113,19 @@ class Junior < Sinatra::Application
 
   get "/vote/:token" do
     @user = fetch_user!(params["token"])
-    @vote = Vote.new
-    erb :vote
+    if @user.vote
+      redirect "/#{params["token"]}"
+    else
+      @vote = Vote.new
+      erb :vote
+    end
   end
 
   post "/vote/:token" do
     @user = fetch_user!(params["token"])
+    if @user.vote
+      halt "Sorry, je hebt al gestemd."
+    end
     @vote = Vote.new(user: @user)
     @vote.weight = params[:weight]
     @vote.length = params[:length]
