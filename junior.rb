@@ -35,7 +35,7 @@ class User < Sequel::Model
 
   def mail_with_template(template_name)
     template = Tilt::ERBTemplate.new("views/#{template_name}")
-    template.render(self, name: name, link_name: "baby.jaspe.rs/#{token}", link_href: "https://baby.jaspe.rs/#{token}")
+    template.render(self, name: name, link_name: "baby.jaspe.rs/#{token}", link_href: "http://baby.jaspe.rs/#{token}")
   end
 
   def send_mail
