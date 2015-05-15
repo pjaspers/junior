@@ -2,7 +2,7 @@ require "pony"
 begin
   require 'dotenv'
   Dotenv.load
-rescue
+rescue LoadError
   # Only needed in develop
 end
 
