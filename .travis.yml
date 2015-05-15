@@ -16,4 +16,4 @@ before_deploy:
 after_deploy:
 - echo "Setting the sha"
 - |
-  curl -n -H "Authorization: Bearer $HEROKU_API_KEY" -X PATCH https://api.heroku.com/apps/kleinejaspers/config-vars -H "Accept: application/vnd.heroku+json; version=3" -H "Content-Type: application/json" -d '{"SHA":"'"$TRAVIS_COMMIT"'"}'
+  curl -n -H "Authorization: Bearer $HEROKU_API_KEY" -X PATCH https://api.heroku.com/apps/kleinejaspers/config-vars -H "Accept: application/vnd.heroku+json; version=3" -H "Content-Type: application/json" -d '{"SHA":"'"$TRAVIS_COMMIT"'"}' > /dev/null
