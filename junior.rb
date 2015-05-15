@@ -1,9 +1,5 @@
 require "bundler"
 Bundler.setup
-if ENV["RACK_ENV"] == "development"
-  require 'dotenv'
-  Dotenv.load
-end
 require "sinatra/base"
 require "sequel"
 require "time"
@@ -46,7 +42,7 @@ class User < Sequel::Model
     Pony.mail(
       to: email,
       subject: "Plaats een gokje",
-      from: "piet@pjaspers.com",
+      from: "'Piet Jaspers' <piet@pjaspers.com>",
       body: mail_with_template("mail.txt.erb"),
       html_body: mail_with_template("mail.html.erb")
     )
