@@ -64,6 +64,13 @@ class AppTest < Minitest::Test
     assert_equal user.vote.length, 52
   end
 
+  def test_user_can_enter_comma_numbers
+    user = setup_user
+    post "/vote/franz", length: "52,34", weight: "3,6", sex: "male", born_at: {month: 11, day: 1, hour: 3, minute: 3}
+    assert_equal user.vote.length, 52.34
+    assert_equal user.vote.weight, 3.6
+  end
+
   def test_shows_errors_on_invalid_inputs
     setup_user
     post "/vote/franz", length: "abc"

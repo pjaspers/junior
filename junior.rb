@@ -122,8 +122,12 @@ class Junior < Sinatra::Application
       halt "Sorry, je hebt al gestemd."
     end
     @vote = Vote.new(user: @user)
-    @vote.weight = params[:weight]
-    @vote.length = params[:length]
+    if params[:weight]
+      @vote.weight = params[:weight].gsub(",", ".")
+    end
+    if params[:length]
+      @vote.length = params[:length].gsub(",", ".")
+    end
     if params[:sex]
       @vote.male = (params[:sex] == "male")
     end
