@@ -1,4 +1,10 @@
 require "pony"
+begin
+  require 'dotenv'
+  Dotenv.load
+rescue
+  # Only needed in develop
+end
 
 if ENV["SENDGRID_USERNAME"]
   Pony.options = {
