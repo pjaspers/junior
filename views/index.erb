@@ -17,11 +17,11 @@
       <% @votes.each.with_index do |vote, index| %>
         <tr>
           <td><%= vote.user.name %></td>
-          <%- if vote.male %>
+          <% if vote.male %>
             <td class="male"><span>Jongen</span></td>
-          <%- else %>
+          <% else %>
             <td class="female"><span>Meisje</span></td>
-          <%- end  %>
+          <% end %>
           <td><%= "%.2f" % vote.length %></td>
           <td><%= vote.weight %></td>
           <td><%= vote.born_at.strftime("%d/%m om %H:%M") %></td>
