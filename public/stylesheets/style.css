@@ -4,47 +4,34 @@
   display: table;
   clear: both; }
 
-.full {
+.full, .three-fourth, .half, .third, .fourth {
   min-height: 1px;
   padding: 12px;
-  float: left;
+  float: left; }
+
+.full {
   width: 100%; }
 
-.offset-third {
-  margin-left: 50%; }
+.three-fourth {
+  width: 75%; }
+
+.half {
+  width: 50%; }
+
+.third {
+  width: 33.33333%; }
+
+.fourth {
+  width: 25%; }
 
 .offset-eight {
   margin-left: 12.5%; }
 
-.three-fourth {
-  min-height: 1px;
-  padding: 12px;
-  float: left;
-  width: 75%; }
-
-.half {
-  min-height: 1px;
-  padding: 12px;
-  float: left;
-  width: 50%; }
-
 .offset-third {
-  margin-left: 33%; }
-
-.third {
-  min-height: 1px;
-  padding: 12px;
-  float: left;
-  width: 33%; }
+  margin-left: 33.33333%; }
 
 .offset-fourth {
   margin-left: 25%; }
-
-.fourth {
-  min-height: 1px;
-  padding: 12px;
-  float: left;
-  width: 25%; }
 
 body {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;

@@ -5,55 +5,41 @@
     clear:both;
 }
 
-.full {
-    min-height: 1px;
-    padding: 12px;
-    float: left;
-    width: 100%;
+%default-grid-properties {
+  min-height: 1px;
+  padding: 12px;
+  float: left;
 }
 
-.offset-third {
-    margin-left: 50%;
+.full {
+  @extend %default-grid-properties;
+  width: 100%;
+}
+.three-fourth {
+  @extend %default-grid-properties;
+  width: (100 * 3/4) * 1%;
+}
+.half {
+  @extend %default-grid-properties;
+  width: (100 / 2) * 1%;
+}
+.third {
+  @extend %default-grid-properties;
+  width: (100 / 3) * 1%;
+}
+.fourth {
+  @extend %default-grid-properties;
+  width: (100 / 4) * 1%;
 }
 
 .offset-eight {
-    margin-left: 12.5%;
+  margin-left: (100 / 8) * 1%;
 }
-
-.three-fourth {
-    min-height: 1px;
-    padding: 12px;
-    float: left;
-    width: 75%;
-}
-
-.half {
-    min-height: 1px;
-    padding: 12px;
-    float: left;
-    width: 50%;
-}
-
 .offset-third {
-    margin-left: 33%;
+  margin-left: (100 / 3) * 1%;
 }
-
-.third {
-    min-height: 1px;
-    padding: 12px;
-    float: left;
-    width: 33%;
-}
-
 .offset-fourth {
-    margin-left: 25%;
-}
-
-.fourth {
-    min-height: 1px;
-    padding: 12px;
-    float: left;
-    width: 25%;
+  margin-left: (100 / 4) * 1%;
 }
 
 body {
