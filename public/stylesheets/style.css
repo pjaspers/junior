@@ -112,7 +112,6 @@ thead > tr > th > span {
 
 .errors label {
   color: #F0B0B0; }
-
 .errors input {
   border: 2px solid #F0B0B0; }
 
@@ -125,13 +124,11 @@ thead > tr > th > span {
 
 .male:before {
   content: "\2642"; }
-
 .male span {
   display: none; }
 
 .female:before {
   content: "\2640"; }
-
 .female span {
   display: none; }
 
@@ -144,9 +141,8 @@ thead > tr > th > span {
 
 .batman {
   width: 50%; }
-
-.batman img {
-  padding: 10px; }
+  .batman img {
+    padding: 10px; }
 
 @media (max-width: 768px) {
   .hero {
@@ -174,15 +170,13 @@ thead > tr > th > span {
     content: ""; } }
 .instructions {
   text-align: center; }
-
-.instructions dt {
-  float: left;
-  width: 50%;
-  font-weight: bold;
-  text-align: right; }
-
-.instructions dd {
-  margin-left: 55%;
-  text-align: left; }
+  .instructions dt {
+    float: left;
+    width: 50%;
+    font-weight: bold;
+    text-align: right; }
+  .instructions dd {
+    margin-left: 55%;
+    text-align: left; }
 
 /*# sourceMappingURL=style.css.map */
