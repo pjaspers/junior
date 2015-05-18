@@ -213,3 +213,8 @@ thead > tr > th > span {
     text-align: left;
   }
 }
+
+// Fucking IE. (Remove border from img)
+img {
+  border: 0;
+}
