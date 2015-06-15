@@ -3,7 +3,7 @@ ruby "2.2.0"
 source "https://rubygems.org"
 
 gem "sinatra", "~> 1.4.6"
-gem "shack", "~> 0.0.2"
+gem "shack", "~> 0.0.3"
 gem "unicorn", "~> 4.9.0"
 gem "rake", "~> 10.4.2"
 gem "sequel", "~> 4.22.0"
