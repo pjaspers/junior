@@ -21,7 +21,7 @@ if ENV["SENDGRID_USERNAME"]
   }
 end
 
-$db = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://junior.db')
+$db = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://localhost/junior')
 
 $db.create_table? :votes do
   primary_key :id

@@ -5,6 +5,17 @@ require "sequel"
 require "time"
 require "./boot"
 
+class Roos
+  def self.je
+    Roos.new
+  end
+  def born_at; Time.mktime(2015,9,15,12,44).freeze; end
+  def weight; 3.115; end
+  def length; 49; end
+  def female?; true; end
+  def male?; false; end
+end
+
 class Vote < Sequel::Model
   plugin :timestamps
   plugin :validation_helpers
@@ -24,6 +35,67 @@ class Vote < Sequel::Model
     validates_presence [:male, :length, :weight, :born_at]
     validates_schema_types
   end
+end
+
+def best_numeric_match(column, value)
+  results = $db["select id,abs(? - ?) as d from votes order by d", column, value].to_a
+  [results.shift].concat(results.take_while{|el| el[:d] == 0}).map{|el| el[:id]}
+end
+
+def best_date_match(datetime)
+  results = $db["select id,abs(born_at::date - ?::date) as d from votes order by d", datetime].to_a
+  [results.shift].concat(results.take_while{|el| el[:d] == 0}).map{|el| el[:id]}
+end
+
+def best_time_match(datetime)
+  results = $db["select id, abs(EXTRACT(EPOCH FROM (born_at::time - ?::time))) as d from votes order by d", datetime].to_a
+  [results.shift].concat(results.take_while{|el| el[:d] == 0}).map{|el| el[:id]}
+end
+
+def winners(roos)
+  blank_score = { total: 0,
+    sex: 0,
+    date: 0,
+    length: 0,
+    weight: 0,
+    time: 0 }.freeze
+
+  best_length_ids = best_numeric_match(:length, roos.length)
+  best_weight_ids = best_numeric_match(:weight, roos.weight)
+  best_date_ids = best_date_match(roos.born_at)
+  best_time_ids = best_time_match(roos.born_at)
+
+  scores = User.inject([]) do |results, user|
+    score = blank_score.dup
+    score[:user_id] = user.id
+    score[:name] = user.name
+    vote_id = 9999
+    if user.vote
+      vote_id = user.vote.id
+      score[:sex] += 4 unless user.vote.male?
+    end
+
+    if best_weight_ids.include? vote_id
+      score[:weight] += 1
+    end
+
+    if best_length_ids.include? vote_id
+      score[:length] +=1
+    end
+
+    if best_date_ids.include? vote_id
+      score[:date] += 2
+    end
+
+    if best_time_ids.include? vote_id
+      score[:time] += 1
+    end
+
+    score[:total] = score[:sex] + score[:date] + score[:length] + score[:weight] + score[:time]
+    results << score
+    results
+  end
+  scores.sort_by{|h| h[:total]}.reverse
 end
 
 class User < Sequel::Model
