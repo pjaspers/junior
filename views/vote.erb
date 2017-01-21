@@ -99,9 +99,9 @@
       <div class="half">
         <label for="born_at[month]">Maand</label>
         <select name="born_at[month]">
-          <option value="8" <%= selected?(@vote.born_at, :month, 8) %>>Augustus</option>
-          <option value="9" <%= selected?(@vote.born_at, :month, 9) %>>September</option>
-          <option value="10" <%= selected?(@vote.born_at, :month, 10) %>>Oktober</option>
+          <option value="4" <%= selected?(@vote.born_at, :month, 4) %>>April</option>
+          <option value="5" <%= selected?(@vote.born_at, :month, 5) %>>Mei</option>
+          <option value="6" <%= selected?(@vote.born_at, :month, 6) %>>Juni</option>
         </select>
         <select name="born_at[day]">
           <% (1..31).each do |day| %>
